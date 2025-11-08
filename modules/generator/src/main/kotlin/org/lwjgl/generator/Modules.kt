@@ -600,9 +600,7 @@ git branch -D @{-1}""")}"""}()}
         """
         Contains bindings to the ${url("https://github.com/mjansson/rpmalloc", "rpmalloc")} library. rpmalloc is a public domain cross platform lock free
         thread caching 16-byte aligned memory allocator implemented in C.
-        """,
-        library = JNILibrary.create("LibRPmalloc"),
-        arrayOverloads = false
+        """
     ),
     SDL(
         "sdl",

@@ -6,9 +6,11 @@
 package renderdoc.templates
 
 import org.lwjgl.generator.*
+import renderdoc.RENDERDOC_API_1_6_0
 import renderdoc.RENDERDOC_BINDING
+import renderdoc.RENDERDOC_Version
 
-val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, prefix = "RD_", prefixConstant = "RD_", binding = RENDERDOC_BINDING) {
+val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, binding = RENDERDOC_BINDING) {
     EnumConstant(
         "eRENDERDOC_API_Version_1_0_0".enum(10000),
         "eRENDERDOC_API_Version_1_0_1".enum(10001),
@@ -120,5 +122,162 @@ val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, prefix = "RD_", pre
         "eRENDERDOC_Key_Pause".enum(0x11A),
 
         "eRENDERDOC_Key_Max".enum(0x11B),
+    )
+
+    int(
+        "SetCaptureOptionU32",
+        unsigned_int("option"),
+        uint32_t("value")
+    )
+
+    int(
+        "SetCaptureOptionF32",
+        unsigned_int("option"),
+        float("value")
+    )
+
+    uint32_t(
+        "GetCaptureOptionU32",
+        unsigned_int("option")
+    )
+
+    void(
+        "SetFocusToggleKeys",
+        nullable..unsigned_int.p("keys"),
+        AutoSize("keys")..int("count")
+    )
+
+    void(
+        "SetCaptureKeys",
+        nullable..unsigned_int.p("keys"),
+        AutoSize("keys")..int("count")
+    )
+
+    uint32_t(
+        "GetOverlayBits",
+        void()
+    )
+
+    void(
+        "MaskOverlayBits",
+        uint32_t("and"),
+        uint32_t("or")
+    )
+
+    void(
+        "RemoveHooks",
+        void()
+    )
+
+    void(
+        "UnloadCrashHandler",
+        void()
+    )
+
+    void(
+        "SetCaptureFilePathTemplate",
+        charUTF8.const.p("filetemplate")
+    )
+
+    charUTF8.const.p(
+        "GetCaptureFilePathTemplate",
+        void()
+    )
+
+    uint32_t(
+        "GetNumCaptures",
+        void()
+    )
+
+    uint32_t(
+        "GetCapture",
+        uint32_t("index"),
+        charUTF8.p("filename"),
+        Check(1)..uint32_t.p("pathlength"),
+        Check(1)..uint64_t.p("timestamp")
+    )
+
+    void(
+        "SetCaptureFileComments",
+        charUTF8.const.p("file"),
+        charUTF8.const.p("comments")
+    )
+
+    uint32_t(
+        "IsTargetControlConnected",
+        void()
+    )
+
+    uint32_t(
+        "LaunchReplayUI",
+        uint32_t("connectTargetControl"),
+        charUTF8.const.p("cmdline")
+    )
+
+    float(
+        "GetCaptureOptionF32",
+        unsigned_int("option")
+    )
+
+    void(
+        "GetAPI",
+        RENDERDOC_Version("version"),
+        Unsafe..opaque_p.p("outPointers")
+    )
+
+    void(
+        "GetAPIVersion",
+        Check(1)..int.p("major"),
+        Check(1)..int.p("minor"),
+        Check(1)..int.p("patch")
+    )
+
+    uint32_t(
+        "ShowReplayUI",
+        void()
+    )
+
+    void(
+        "SetActiveWindow",
+        opaque_p("device"),
+        opaque_p("wndHandle"),
+    )
+
+    void(
+        "TriggerCapture",
+        void()
+    )
+
+    void(
+        "TriggerMultiFrameCapture",
+        uint32_t("numFrames")
+    )
+
+    void(
+        "StartFrameCapture",
+        opaque_p("device"),
+        opaque_p("wndHandle"),
+    )
+
+    uint32_t(
+        "IsFrameCapturing",
+        void()
+    )
+
+    uint32_t(
+        "EndFrameCapture",
+        opaque_p("device"),
+        opaque_p("wndHandle"),
+    )
+
+    uint32_t(
+        "DiscardFrameCapture",
+        opaque_p("device"),
+        opaque_p("wndHandle"),
+    )
+
+    void(
+        "SetCaptureTitle",
+        NullTerminated..char.const.p("title")
     )
 }

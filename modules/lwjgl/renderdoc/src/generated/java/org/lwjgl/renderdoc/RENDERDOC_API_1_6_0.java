@@ -9,12 +9,46 @@ import org.jspecify.annotations.*;
 
 import java.nio.*;
 
+import org.lwjgl.*;
 import org.lwjgl.system.*;
 
+import static org.lwjgl.system.Checks.*;
 import static org.lwjgl.system.MemoryUtil.*;
 import static org.lwjgl.system.MemoryStack.*;
 
-public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> {
+/**
+ * <pre>{@code
+ * struct RENDERDOC_API_1_6_0 {
+ *     void * GetAPIVersion;
+ *     void * SetCaptureOptionU32;
+ *     void * SetCaptureOptionF32;
+ *     void * GetCaptureOptionU32;
+ *     void * GetCaptureOptionF32;
+ *     void * SetFocusToggleKeys;
+ *     void * SetCaptureKeys;
+ *     void * GetOverlayBits;
+ *     void * MaskOverlayBits;
+ *     void * RemoveHooks;
+ *     void * UnloadCrashHandler;
+ *     void * SetCaptureFilePathTemplate;
+ *     void * GetCaptureFilePathTemplate;
+ *     void * GetNumCaptures;
+ *     void * GetCapture;
+ *     void * TriggerCapture;
+ *     void * IsTargetControlConnected;
+ *     void * LaunchReplayUI;
+ *     void * SetActiveWindow;
+ *     void * StartFrameCapture;
+ *     void * IsFrameCapturing;
+ *     void * EndFrameCapture;
+ *     void * TriggerMultiFrameCapture;
+ *     void * SetCaptureFileComments;
+ *     void * DiscardFrameCapture;
+ *     void * ShowReplayUI;
+ *     void * SetCaptureTitle;
+ * }}</pre>
+ */
+public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> implements NativeResource {
 
     /** The struct size in bytes. */
     public static final int SIZEOF;
@@ -22,17 +56,98 @@ public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> {
     /** The struct alignment in bytes. */
     public static final int ALIGNOF;
 
+    /** The struct member offsets. */
+    public static final int
+        GETAPIVERSION,
+        SETCAPTUREOPTIONU32,
+        SETCAPTUREOPTIONF32,
+        GETCAPTUREOPTIONU32,
+        GETCAPTUREOPTIONF32,
+        SETFOCUSTOGGLEKEYS,
+        SETCAPTUREKEYS,
+        GETOVERLAYBITS,
+        MASKOVERLAYBITS,
+        REMOVEHOOKS,
+        UNLOADCRASHHANDLER,
+        SETCAPTUREFILEPATHTEMPLATE,
+        GETCAPTUREFILEPATHTEMPLATE,
+        GETNUMCAPTURES,
+        GETCAPTURE,
+        TRIGGERCAPTURE,
+        ISTARGETCONTROLCONNECTED,
+        LAUNCHREPLAYUI,
+        SETACTIVEWINDOW,
+        STARTFRAMECAPTURE,
+        ISFRAMECAPTURING,
+        ENDFRAMECAPTURE,
+        TRIGGERMULTIFRAMECAPTURE,
+        SETCAPTUREFILECOMMENTS,
+        DISCARDFRAMECAPTURE,
+        SHOWREPLAYUI,
+        SETCAPTURETITLE;
+
     static {
-        LibRenderdoc.initialize();
+        Layout layout = __struct(
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE),
+            __member(POINTER_SIZE)
+        );
 
-        try (MemoryStack stack = stackPush()) {
-            IntBuffer offsets = stack.mallocInt(1);
-            SIZEOF = offsets(memAddress(offsets));
-            ALIGNOF = offsets.get(0);
-        }
+        SIZEOF = layout.getSize();
+        ALIGNOF = layout.getAlignment();
+
+        GETAPIVERSION = layout.offsetof(0);
+        SETCAPTUREOPTIONU32 = layout.offsetof(1);
+        SETCAPTUREOPTIONF32 = layout.offsetof(2);
+        GETCAPTUREOPTIONU32 = layout.offsetof(3);
+        GETCAPTUREOPTIONF32 = layout.offsetof(4);
+        SETFOCUSTOGGLEKEYS = layout.offsetof(5);
+        SETCAPTUREKEYS = layout.offsetof(6);
+        GETOVERLAYBITS = layout.offsetof(7);
+        MASKOVERLAYBITS = layout.offsetof(8);
+        REMOVEHOOKS = layout.offsetof(9);
+        UNLOADCRASHHANDLER = layout.offsetof(10);
+        SETCAPTUREFILEPATHTEMPLATE = layout.offsetof(11);
+        GETCAPTUREFILEPATHTEMPLATE = layout.offsetof(12);
+        GETNUMCAPTURES = layout.offsetof(13);
+        GETCAPTURE = layout.offsetof(14);
+        TRIGGERCAPTURE = layout.offsetof(15);
+        ISTARGETCONTROLCONNECTED = layout.offsetof(16);
+        LAUNCHREPLAYUI = layout.offsetof(17);
+        SETACTIVEWINDOW = layout.offsetof(18);
+        STARTFRAMECAPTURE = layout.offsetof(19);
+        ISFRAMECAPTURING = layout.offsetof(20);
+        ENDFRAMECAPTURE = layout.offsetof(21);
+        TRIGGERMULTIFRAMECAPTURE = layout.offsetof(22);
+        SETCAPTUREFILECOMMENTS = layout.offsetof(23);
+        DISCARDFRAMECAPTURE = layout.offsetof(24);
+        SHOWREPLAYUI = layout.offsetof(25);
+        SETCAPTURETITLE = layout.offsetof(26);
     }
-
-    private static native int offsets(long buffer);
 
     protected RENDERDOC_API_1_6_0(long address, @Nullable ByteBuffer container) {
         super(address, container);
@@ -56,7 +171,233 @@ public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> {
     @Override
     public int sizeof() { return SIZEOF; }
 
+    /** @return the value of the {@code GetAPIVersion} field. */
+    @NativeType("void *")
+    public long GetAPIVersion() { return nGetAPIVersion(address()); }
+    /** @return the value of the {@code SetCaptureOptionU32} field. */
+    @NativeType("void *")
+    public long SetCaptureOptionU32() { return nSetCaptureOptionU32(address()); }
+    /** @return the value of the {@code SetCaptureOptionF32} field. */
+    @NativeType("void *")
+    public long SetCaptureOptionF32() { return nSetCaptureOptionF32(address()); }
+    /** @return the value of the {@code GetCaptureOptionU32} field. */
+    @NativeType("void *")
+    public long GetCaptureOptionU32() { return nGetCaptureOptionU32(address()); }
+    /** @return the value of the {@code GetCaptureOptionF32} field. */
+    @NativeType("void *")
+    public long GetCaptureOptionF32() { return nGetCaptureOptionF32(address()); }
+    /** @return the value of the {@code SetFocusToggleKeys} field. */
+    @NativeType("void *")
+    public long SetFocusToggleKeys() { return nSetFocusToggleKeys(address()); }
+    /** @return the value of the {@code SetCaptureKeys} field. */
+    @NativeType("void *")
+    public long SetCaptureKeys() { return nSetCaptureKeys(address()); }
+    /** @return the value of the {@code GetOverlayBits} field. */
+    @NativeType("void *")
+    public long GetOverlayBits() { return nGetOverlayBits(address()); }
+    /** @return the value of the {@code MaskOverlayBits} field. */
+    @NativeType("void *")
+    public long MaskOverlayBits() { return nMaskOverlayBits(address()); }
+    /** @return the value of the {@code RemoveHooks} field. */
+    @NativeType("void *")
+    public long RemoveHooks() { return nRemoveHooks(address()); }
+    /** @return the value of the {@code UnloadCrashHandler} field. */
+    @NativeType("void *")
+    public long UnloadCrashHandler() { return nUnloadCrashHandler(address()); }
+    /** @return the value of the {@code SetCaptureFilePathTemplate} field. */
+    @NativeType("void *")
+    public long SetCaptureFilePathTemplate() { return nSetCaptureFilePathTemplate(address()); }
+    /** @return the value of the {@code GetCaptureFilePathTemplate} field. */
+    @NativeType("void *")
+    public long GetCaptureFilePathTemplate() { return nGetCaptureFilePathTemplate(address()); }
+    /** @return the value of the {@code GetNumCaptures} field. */
+    @NativeType("void *")
+    public long GetNumCaptures() { return nGetNumCaptures(address()); }
+    /** @return the value of the {@code GetCapture} field. */
+    @NativeType("void *")
+    public long GetCapture() { return nGetCapture(address()); }
+    /** @return the value of the {@code TriggerCapture} field. */
+    @NativeType("void *")
+    public long TriggerCapture() { return nTriggerCapture(address()); }
+    /** @return the value of the {@code IsTargetControlConnected} field. */
+    @NativeType("void *")
+    public long IsTargetControlConnected() { return nIsTargetControlConnected(address()); }
+    /** @return the value of the {@code LaunchReplayUI} field. */
+    @NativeType("void *")
+    public long LaunchReplayUI() { return nLaunchReplayUI(address()); }
+    /** @return the value of the {@code SetActiveWindow} field. */
+    @NativeType("void *")
+    public long SetActiveWindow() { return nSetActiveWindow(address()); }
+    /** @return the value of the {@code StartFrameCapture} field. */
+    @NativeType("void *")
+    public long StartFrameCapture() { return nStartFrameCapture(address()); }
+    /** @return the value of the {@code IsFrameCapturing} field. */
+    @NativeType("void *")
+    public long IsFrameCapturing() { return nIsFrameCapturing(address()); }
+    /** @return the value of the {@code EndFrameCapture} field. */
+    @NativeType("void *")
+    public long EndFrameCapture() { return nEndFrameCapture(address()); }
+    /** @return the value of the {@code TriggerMultiFrameCapture} field. */
+    @NativeType("void *")
+    public long TriggerMultiFrameCapture() { return nTriggerMultiFrameCapture(address()); }
+    /** @return the value of the {@code SetCaptureFileComments} field. */
+    @NativeType("void *")
+    public long SetCaptureFileComments() { return nSetCaptureFileComments(address()); }
+    /** @return the value of the {@code DiscardFrameCapture} field. */
+    @NativeType("void *")
+    public long DiscardFrameCapture() { return nDiscardFrameCapture(address()); }
+    /** @return the value of the {@code ShowReplayUI} field. */
+    @NativeType("void *")
+    public long ShowReplayUI() { return nShowReplayUI(address()); }
+    /** @return the value of the {@code SetCaptureTitle} field. */
+    @NativeType("void *")
+    public long SetCaptureTitle() { return nSetCaptureTitle(address()); }
+
+    /** Sets the specified value to the {@code GetAPIVersion} field. */
+    public RENDERDOC_API_1_6_0 GetAPIVersion(@NativeType("void *") long value) { nGetAPIVersion(address(), value); return this; }
+    /** Sets the specified value to the {@code SetCaptureOptionU32} field. */
+    public RENDERDOC_API_1_6_0 SetCaptureOptionU32(@NativeType("void *") long value) { nSetCaptureOptionU32(address(), value); return this; }
+    /** Sets the specified value to the {@code SetCaptureOptionF32} field. */
+    public RENDERDOC_API_1_6_0 SetCaptureOptionF32(@NativeType("void *") long value) { nSetCaptureOptionF32(address(), value); return this; }
+    /** Sets the specified value to the {@code GetCaptureOptionU32} field. */
+    public RENDERDOC_API_1_6_0 GetCaptureOptionU32(@NativeType("void *") long value) { nGetCaptureOptionU32(address(), value); return this; }
+    /** Sets the specified value to the {@code GetCaptureOptionF32} field. */
+    public RENDERDOC_API_1_6_0 GetCaptureOptionF32(@NativeType("void *") long value) { nGetCaptureOptionF32(address(), value); return this; }
+    /** Sets the specified value to the {@code SetFocusToggleKeys} field. */
+    public RENDERDOC_API_1_6_0 SetFocusToggleKeys(@NativeType("void *") long value) { nSetFocusToggleKeys(address(), value); return this; }
+    /** Sets the specified value to the {@code SetCaptureKeys} field. */
+    public RENDERDOC_API_1_6_0 SetCaptureKeys(@NativeType("void *") long value) { nSetCaptureKeys(address(), value); return this; }
+    /** Sets the specified value to the {@code GetOverlayBits} field. */
+    public RENDERDOC_API_1_6_0 GetOverlayBits(@NativeType("void *") long value) { nGetOverlayBits(address(), value); return this; }
+    /** Sets the specified value to the {@code MaskOverlayBits} field. */
+    public RENDERDOC_API_1_6_0 MaskOverlayBits(@NativeType("void *") long value) { nMaskOverlayBits(address(), value); return this; }
+    /** Sets the specified value to the {@code RemoveHooks} field. */
+    public RENDERDOC_API_1_6_0 RemoveHooks(@NativeType("void *") long value) { nRemoveHooks(address(), value); return this; }
+    /** Sets the specified value to the {@code UnloadCrashHandler} field. */
+    public RENDERDOC_API_1_6_0 UnloadCrashHandler(@NativeType("void *") long value) { nUnloadCrashHandler(address(), value); return this; }
+    /** Sets the specified value to the {@code SetCaptureFilePathTemplate} field. */
+    public RENDERDOC_API_1_6_0 SetCaptureFilePathTemplate(@NativeType("void *") long value) { nSetCaptureFilePathTemplate(address(), value); return this; }
+    /** Sets the specified value to the {@code GetCaptureFilePathTemplate} field. */
+    public RENDERDOC_API_1_6_0 GetCaptureFilePathTemplate(@NativeType("void *") long value) { nGetCaptureFilePathTemplate(address(), value); return this; }
+    /** Sets the specified value to the {@code GetNumCaptures} field. */
+    public RENDERDOC_API_1_6_0 GetNumCaptures(@NativeType("void *") long value) { nGetNumCaptures(address(), value); return this; }
+    /** Sets the specified value to the {@code GetCapture} field. */
+    public RENDERDOC_API_1_6_0 GetCapture(@NativeType("void *") long value) { nGetCapture(address(), value); return this; }
+    /** Sets the specified value to the {@code TriggerCapture} field. */
+    public RENDERDOC_API_1_6_0 TriggerCapture(@NativeType("void *") long value) { nTriggerCapture(address(), value); return this; }
+    /** Sets the specified value to the {@code IsTargetControlConnected} field. */
+    public RENDERDOC_API_1_6_0 IsTargetControlConnected(@NativeType("void *") long value) { nIsTargetControlConnected(address(), value); return this; }
+    /** Sets the specified value to the {@code LaunchReplayUI} field. */
+    public RENDERDOC_API_1_6_0 LaunchReplayUI(@NativeType("void *") long value) { nLaunchReplayUI(address(), value); return this; }
+    /** Sets the specified value to the {@code SetActiveWindow} field. */
+    public RENDERDOC_API_1_6_0 SetActiveWindow(@NativeType("void *") long value) { nSetActiveWindow(address(), value); return this; }
+    /** Sets the specified value to the {@code StartFrameCapture} field. */
+    public RENDERDOC_API_1_6_0 StartFrameCapture(@NativeType("void *") long value) { nStartFrameCapture(address(), value); return this; }
+    /** Sets the specified value to the {@code IsFrameCapturing} field. */
+    public RENDERDOC_API_1_6_0 IsFrameCapturing(@NativeType("void *") long value) { nIsFrameCapturing(address(), value); return this; }
+    /** Sets the specified value to the {@code EndFrameCapture} field. */
+    public RENDERDOC_API_1_6_0 EndFrameCapture(@NativeType("void *") long value) { nEndFrameCapture(address(), value); return this; }
+    /** Sets the specified value to the {@code TriggerMultiFrameCapture} field. */
+    public RENDERDOC_API_1_6_0 TriggerMultiFrameCapture(@NativeType("void *") long value) { nTriggerMultiFrameCapture(address(), value); return this; }
+    /** Sets the specified value to the {@code SetCaptureFileComments} field. */
+    public RENDERDOC_API_1_6_0 SetCaptureFileComments(@NativeType("void *") long value) { nSetCaptureFileComments(address(), value); return this; }
+    /** Sets the specified value to the {@code DiscardFrameCapture} field. */
+    public RENDERDOC_API_1_6_0 DiscardFrameCapture(@NativeType("void *") long value) { nDiscardFrameCapture(address(), value); return this; }
+    /** Sets the specified value to the {@code ShowReplayUI} field. */
+    public RENDERDOC_API_1_6_0 ShowReplayUI(@NativeType("void *") long value) { nShowReplayUI(address(), value); return this; }
+    /** Sets the specified value to the {@code SetCaptureTitle} field. */
+    public RENDERDOC_API_1_6_0 SetCaptureTitle(@NativeType("void *") long value) { nSetCaptureTitle(address(), value); return this; }
+
+    /** Initializes this struct with the specified values. */
+    public RENDERDOC_API_1_6_0 set(
+        long GetAPIVersion,
+        long SetCaptureOptionU32,
+        long SetCaptureOptionF32,
+        long GetCaptureOptionU32,
+        long GetCaptureOptionF32,
+        long SetFocusToggleKeys,
+        long SetCaptureKeys,
+        long GetOverlayBits,
+        long MaskOverlayBits,
+        long RemoveHooks,
+        long UnloadCrashHandler,
+        long SetCaptureFilePathTemplate,
+        long GetCaptureFilePathTemplate,
+        long GetNumCaptures,
+        long GetCapture,
+        long TriggerCapture,
+        long IsTargetControlConnected,
+        long LaunchReplayUI,
+        long SetActiveWindow,
+        long StartFrameCapture,
+        long IsFrameCapturing,
+        long EndFrameCapture,
+        long TriggerMultiFrameCapture,
+        long SetCaptureFileComments,
+        long DiscardFrameCapture,
+        long ShowReplayUI,
+        long SetCaptureTitle
+    ) {
+        GetAPIVersion(GetAPIVersion);
+        SetCaptureOptionU32(SetCaptureOptionU32);
+        SetCaptureOptionF32(SetCaptureOptionF32);
+        GetCaptureOptionU32(GetCaptureOptionU32);
+        GetCaptureOptionF32(GetCaptureOptionF32);
+        SetFocusToggleKeys(SetFocusToggleKeys);
+        SetCaptureKeys(SetCaptureKeys);
+        GetOverlayBits(GetOverlayBits);
+        MaskOverlayBits(MaskOverlayBits);
+        RemoveHooks(RemoveHooks);
+        UnloadCrashHandler(UnloadCrashHandler);
+        SetCaptureFilePathTemplate(SetCaptureFilePathTemplate);
+        GetCaptureFilePathTemplate(GetCaptureFilePathTemplate);
+        GetNumCaptures(GetNumCaptures);
+        GetCapture(GetCapture);
+        TriggerCapture(TriggerCapture);
+        IsTargetControlConnected(IsTargetControlConnected);
+        LaunchReplayUI(LaunchReplayUI);
+        SetActiveWindow(SetActiveWindow);
+        StartFrameCapture(StartFrameCapture);
+        IsFrameCapturing(IsFrameCapturing);
+        EndFrameCapture(EndFrameCapture);
+        TriggerMultiFrameCapture(TriggerMultiFrameCapture);
+        SetCaptureFileComments(SetCaptureFileComments);
+        DiscardFrameCapture(DiscardFrameCapture);
+        ShowReplayUI(ShowReplayUI);
+        SetCaptureTitle(SetCaptureTitle);
+
+        return this;
+    }
+
+    /**
+     * Copies the specified struct data to this struct.
+     *
+     * @param src the source struct
+     *
+     * @return this struct
+     */
+    public RENDERDOC_API_1_6_0 set(RENDERDOC_API_1_6_0 src) {
+        memCopy(src.address(), address(), SIZEOF);
+        return this;
+    }
+
     // -----------------------------------
+
+    /** Returns a new {@code RENDERDOC_API_1_6_0} instance allocated with {@link MemoryUtil#memAlloc memAlloc}. The instance must be explicitly freed. */
+    public static RENDERDOC_API_1_6_0 malloc() {
+        return new RENDERDOC_API_1_6_0(nmemAllocChecked(SIZEOF), null);
+    }
+
+    /** Returns a new {@code RENDERDOC_API_1_6_0} instance allocated with {@link MemoryUtil#memCalloc memCalloc}. The instance must be explicitly freed. */
+    public static RENDERDOC_API_1_6_0 calloc() {
+        return new RENDERDOC_API_1_6_0(nmemCallocChecked(1, SIZEOF), null);
+    }
+
+    /** Returns a new {@code RENDERDOC_API_1_6_0} instance allocated with {@link BufferUtils}. */
+    public static RENDERDOC_API_1_6_0 create() {
+        ByteBuffer container = BufferUtils.createByteBuffer(SIZEOF);
+        return new RENDERDOC_API_1_6_0(memAddress(container), container);
+    }
 
     /** Returns a new {@code RENDERDOC_API_1_6_0} instance for the specified memory address. */
     public static RENDERDOC_API_1_6_0 create(long address) {
@@ -66,6 +407,34 @@ public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> {
     /** Like {@link #create(long) create}, but returns {@code null} if {@code address} is {@code NULL}. */
     public static @Nullable RENDERDOC_API_1_6_0 createSafe(long address) {
         return address == NULL ? null : new RENDERDOC_API_1_6_0(address, null);
+    }
+
+    /**
+     * Returns a new {@link RENDERDOC_API_1_6_0.Buffer} instance allocated with {@link MemoryUtil#memAlloc memAlloc}. The instance must be explicitly freed.
+     *
+     * @param capacity the buffer capacity
+     */
+    public static RENDERDOC_API_1_6_0.Buffer malloc(int capacity) {
+        return new Buffer(nmemAllocChecked(__checkMalloc(capacity, SIZEOF)), capacity);
+    }
+
+    /**
+     * Returns a new {@link RENDERDOC_API_1_6_0.Buffer} instance allocated with {@link MemoryUtil#memCalloc memCalloc}. The instance must be explicitly freed.
+     *
+     * @param capacity the buffer capacity
+     */
+    public static RENDERDOC_API_1_6_0.Buffer calloc(int capacity) {
+        return new Buffer(nmemCallocChecked(capacity, SIZEOF), capacity);
+    }
+
+    /**
+     * Returns a new {@link RENDERDOC_API_1_6_0.Buffer} instance allocated with {@link BufferUtils}.
+     *
+     * @param capacity the buffer capacity
+     */
+    public static RENDERDOC_API_1_6_0.Buffer create(int capacity) {
+        ByteBuffer container = __create(capacity, SIZEOF);
+        return new Buffer(memAddress(container), container, -1, 0, capacity, capacity);
     }
 
     /**
@@ -83,12 +452,195 @@ public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> {
         return address == NULL ? null : new Buffer(address, capacity);
     }
 
+    /**
+     * Returns a new {@code RENDERDOC_API_1_6_0} instance allocated on the specified {@link MemoryStack}.
+     *
+     * @param stack the stack from which to allocate
+     */
+    public static RENDERDOC_API_1_6_0 malloc(MemoryStack stack) {
+        return new RENDERDOC_API_1_6_0(stack.nmalloc(ALIGNOF, SIZEOF), null);
+    }
+
+    /**
+     * Returns a new {@code RENDERDOC_API_1_6_0} instance allocated on the specified {@link MemoryStack} and initializes all its bits to zero.
+     *
+     * @param stack the stack from which to allocate
+     */
+    public static RENDERDOC_API_1_6_0 calloc(MemoryStack stack) {
+        return new RENDERDOC_API_1_6_0(stack.ncalloc(ALIGNOF, 1, SIZEOF), null);
+    }
+
+    /**
+     * Returns a new {@link RENDERDOC_API_1_6_0.Buffer} instance allocated on the specified {@link MemoryStack}.
+     *
+     * @param stack    the stack from which to allocate
+     * @param capacity the buffer capacity
+     */
+    public static RENDERDOC_API_1_6_0.Buffer malloc(int capacity, MemoryStack stack) {
+        return new Buffer(stack.nmalloc(ALIGNOF, capacity * SIZEOF), capacity);
+    }
+
+    /**
+     * Returns a new {@link RENDERDOC_API_1_6_0.Buffer} instance allocated on the specified {@link MemoryStack} and initializes all its bits to zero.
+     *
+     * @param stack    the stack from which to allocate
+     * @param capacity the buffer capacity
+     */
+    public static RENDERDOC_API_1_6_0.Buffer calloc(int capacity, MemoryStack stack) {
+        return new Buffer(stack.ncalloc(ALIGNOF, capacity, SIZEOF), capacity);
+    }
+
     // -----------------------------------
+
+    /** Unsafe version of {@link #GetAPIVersion}. */
+    public static long nGetAPIVersion(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETAPIVERSION); }
+    /** Unsafe version of {@link #SetCaptureOptionU32}. */
+    public static long nSetCaptureOptionU32(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREOPTIONU32); }
+    /** Unsafe version of {@link #SetCaptureOptionF32}. */
+    public static long nSetCaptureOptionF32(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREOPTIONF32); }
+    /** Unsafe version of {@link #GetCaptureOptionU32}. */
+    public static long nGetCaptureOptionU32(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREOPTIONU32); }
+    /** Unsafe version of {@link #GetCaptureOptionF32}. */
+    public static long nGetCaptureOptionF32(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREOPTIONF32); }
+    /** Unsafe version of {@link #SetFocusToggleKeys}. */
+    public static long nSetFocusToggleKeys(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETFOCUSTOGGLEKEYS); }
+    /** Unsafe version of {@link #SetCaptureKeys}. */
+    public static long nSetCaptureKeys(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREKEYS); }
+    /** Unsafe version of {@link #GetOverlayBits}. */
+    public static long nGetOverlayBits(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETOVERLAYBITS); }
+    /** Unsafe version of {@link #MaskOverlayBits}. */
+    public static long nMaskOverlayBits(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.MASKOVERLAYBITS); }
+    /** Unsafe version of {@link #RemoveHooks}. */
+    public static long nRemoveHooks(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.REMOVEHOOKS); }
+    /** Unsafe version of {@link #UnloadCrashHandler}. */
+    public static long nUnloadCrashHandler(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.UNLOADCRASHHANDLER); }
+    /** Unsafe version of {@link #SetCaptureFilePathTemplate}. */
+    public static long nSetCaptureFilePathTemplate(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREFILEPATHTEMPLATE); }
+    /** Unsafe version of {@link #GetCaptureFilePathTemplate}. */
+    public static long nGetCaptureFilePathTemplate(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREFILEPATHTEMPLATE); }
+    /** Unsafe version of {@link #GetNumCaptures}. */
+    public static long nGetNumCaptures(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETNUMCAPTURES); }
+    /** Unsafe version of {@link #GetCapture}. */
+    public static long nGetCapture(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTURE); }
+    /** Unsafe version of {@link #TriggerCapture}. */
+    public static long nTriggerCapture(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.TRIGGERCAPTURE); }
+    /** Unsafe version of {@link #IsTargetControlConnected}. */
+    public static long nIsTargetControlConnected(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.ISTARGETCONTROLCONNECTED); }
+    /** Unsafe version of {@link #LaunchReplayUI}. */
+    public static long nLaunchReplayUI(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.LAUNCHREPLAYUI); }
+    /** Unsafe version of {@link #SetActiveWindow}. */
+    public static long nSetActiveWindow(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETACTIVEWINDOW); }
+    /** Unsafe version of {@link #StartFrameCapture}. */
+    public static long nStartFrameCapture(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.STARTFRAMECAPTURE); }
+    /** Unsafe version of {@link #IsFrameCapturing}. */
+    public static long nIsFrameCapturing(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.ISFRAMECAPTURING); }
+    /** Unsafe version of {@link #EndFrameCapture}. */
+    public static long nEndFrameCapture(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.ENDFRAMECAPTURE); }
+    /** Unsafe version of {@link #TriggerMultiFrameCapture}. */
+    public static long nTriggerMultiFrameCapture(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.TRIGGERMULTIFRAMECAPTURE); }
+    /** Unsafe version of {@link #SetCaptureFileComments}. */
+    public static long nSetCaptureFileComments(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREFILECOMMENTS); }
+    /** Unsafe version of {@link #DiscardFrameCapture}. */
+    public static long nDiscardFrameCapture(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.DISCARDFRAMECAPTURE); }
+    /** Unsafe version of {@link #ShowReplayUI}. */
+    public static long nShowReplayUI(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SHOWREPLAYUI); }
+    /** Unsafe version of {@link #SetCaptureTitle}. */
+    public static long nSetCaptureTitle(long struct) { return memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTURETITLE); }
+
+    /** Unsafe version of {@link #GetAPIVersion(long) GetAPIVersion}. */
+    public static void nGetAPIVersion(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETAPIVERSION, check(value)); }
+    /** Unsafe version of {@link #SetCaptureOptionU32(long) SetCaptureOptionU32}. */
+    public static void nSetCaptureOptionU32(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREOPTIONU32, check(value)); }
+    /** Unsafe version of {@link #SetCaptureOptionF32(long) SetCaptureOptionF32}. */
+    public static void nSetCaptureOptionF32(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREOPTIONF32, check(value)); }
+    /** Unsafe version of {@link #GetCaptureOptionU32(long) GetCaptureOptionU32}. */
+    public static void nGetCaptureOptionU32(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREOPTIONU32, check(value)); }
+    /** Unsafe version of {@link #GetCaptureOptionF32(long) GetCaptureOptionF32}. */
+    public static void nGetCaptureOptionF32(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREOPTIONF32, check(value)); }
+    /** Unsafe version of {@link #SetFocusToggleKeys(long) SetFocusToggleKeys}. */
+    public static void nSetFocusToggleKeys(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETFOCUSTOGGLEKEYS, check(value)); }
+    /** Unsafe version of {@link #SetCaptureKeys(long) SetCaptureKeys}. */
+    public static void nSetCaptureKeys(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREKEYS, check(value)); }
+    /** Unsafe version of {@link #GetOverlayBits(long) GetOverlayBits}. */
+    public static void nGetOverlayBits(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETOVERLAYBITS, check(value)); }
+    /** Unsafe version of {@link #MaskOverlayBits(long) MaskOverlayBits}. */
+    public static void nMaskOverlayBits(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.MASKOVERLAYBITS, check(value)); }
+    /** Unsafe version of {@link #RemoveHooks(long) RemoveHooks}. */
+    public static void nRemoveHooks(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.REMOVEHOOKS, check(value)); }
+    /** Unsafe version of {@link #UnloadCrashHandler(long) UnloadCrashHandler}. */
+    public static void nUnloadCrashHandler(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.UNLOADCRASHHANDLER, check(value)); }
+    /** Unsafe version of {@link #SetCaptureFilePathTemplate(long) SetCaptureFilePathTemplate}. */
+    public static void nSetCaptureFilePathTemplate(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREFILEPATHTEMPLATE, check(value)); }
+    /** Unsafe version of {@link #GetCaptureFilePathTemplate(long) GetCaptureFilePathTemplate}. */
+    public static void nGetCaptureFilePathTemplate(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREFILEPATHTEMPLATE, check(value)); }
+    /** Unsafe version of {@link #GetNumCaptures(long) GetNumCaptures}. */
+    public static void nGetNumCaptures(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETNUMCAPTURES, check(value)); }
+    /** Unsafe version of {@link #GetCapture(long) GetCapture}. */
+    public static void nGetCapture(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.GETCAPTURE, check(value)); }
+    /** Unsafe version of {@link #TriggerCapture(long) TriggerCapture}. */
+    public static void nTriggerCapture(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.TRIGGERCAPTURE, check(value)); }
+    /** Unsafe version of {@link #IsTargetControlConnected(long) IsTargetControlConnected}. */
+    public static void nIsTargetControlConnected(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.ISTARGETCONTROLCONNECTED, check(value)); }
+    /** Unsafe version of {@link #LaunchReplayUI(long) LaunchReplayUI}. */
+    public static void nLaunchReplayUI(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.LAUNCHREPLAYUI, check(value)); }
+    /** Unsafe version of {@link #SetActiveWindow(long) SetActiveWindow}. */
+    public static void nSetActiveWindow(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETACTIVEWINDOW, check(value)); }
+    /** Unsafe version of {@link #StartFrameCapture(long) StartFrameCapture}. */
+    public static void nStartFrameCapture(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.STARTFRAMECAPTURE, check(value)); }
+    /** Unsafe version of {@link #IsFrameCapturing(long) IsFrameCapturing}. */
+    public static void nIsFrameCapturing(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.ISFRAMECAPTURING, check(value)); }
+    /** Unsafe version of {@link #EndFrameCapture(long) EndFrameCapture}. */
+    public static void nEndFrameCapture(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.ENDFRAMECAPTURE, check(value)); }
+    /** Unsafe version of {@link #TriggerMultiFrameCapture(long) TriggerMultiFrameCapture}. */
+    public static void nTriggerMultiFrameCapture(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.TRIGGERMULTIFRAMECAPTURE, check(value)); }
+    /** Unsafe version of {@link #SetCaptureFileComments(long) SetCaptureFileComments}. */
+    public static void nSetCaptureFileComments(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREFILECOMMENTS, check(value)); }
+    /** Unsafe version of {@link #DiscardFrameCapture(long) DiscardFrameCapture}. */
+    public static void nDiscardFrameCapture(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.DISCARDFRAMECAPTURE, check(value)); }
+    /** Unsafe version of {@link #ShowReplayUI(long) ShowReplayUI}. */
+    public static void nShowReplayUI(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SHOWREPLAYUI, check(value)); }
+    /** Unsafe version of {@link #SetCaptureTitle(long) SetCaptureTitle}. */
+    public static void nSetCaptureTitle(long struct, long value) { memPutAddress(struct + RENDERDOC_API_1_6_0.SETCAPTURETITLE, check(value)); }
+
+    /**
+     * Validates pointer members that should not be {@code NULL}.
+     *
+     * @param struct the struct to validate
+     */
+    public static void validate(long struct) {
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETAPIVERSION));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREOPTIONU32));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREOPTIONF32));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREOPTIONU32));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREOPTIONF32));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETFOCUSTOGGLEKEYS));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREKEYS));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETOVERLAYBITS));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.MASKOVERLAYBITS));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.REMOVEHOOKS));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.UNLOADCRASHHANDLER));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREFILEPATHTEMPLATE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTUREFILEPATHTEMPLATE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETNUMCAPTURES));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.GETCAPTURE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.TRIGGERCAPTURE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.ISTARGETCONTROLCONNECTED));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.LAUNCHREPLAYUI));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETACTIVEWINDOW));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.STARTFRAMECAPTURE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.ISFRAMECAPTURING));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.ENDFRAMECAPTURE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.TRIGGERMULTIFRAMECAPTURE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTUREFILECOMMENTS));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.DISCARDFRAMECAPTURE));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SHOWREPLAYUI));
+        check(memGetAddress(struct + RENDERDOC_API_1_6_0.SETCAPTURETITLE));
+    }
 
     // -----------------------------------
 
     /** An array of {@link RENDERDOC_API_1_6_0} structs. */
-    public static class Buffer extends StructBuffer<RENDERDOC_API_1_6_0, Buffer> {
+    public static class Buffer extends StructBuffer<RENDERDOC_API_1_6_0, Buffer> implements NativeResource {
 
         private static final RENDERDOC_API_1_6_0 ELEMENT_FACTORY = RENDERDOC_API_1_6_0.create(-1L);
 
@@ -127,6 +679,143 @@ public class RENDERDOC_API_1_6_0 extends Struct<RENDERDOC_API_1_6_0> {
         protected RENDERDOC_API_1_6_0 getElementFactory() {
             return ELEMENT_FACTORY;
         }
+
+        /** @return the value of the {@code GetAPIVersion} field. */
+        @NativeType("void *")
+        public long GetAPIVersion() { return RENDERDOC_API_1_6_0.nGetAPIVersion(address()); }
+        /** @return the value of the {@code SetCaptureOptionU32} field. */
+        @NativeType("void *")
+        public long SetCaptureOptionU32() { return RENDERDOC_API_1_6_0.nSetCaptureOptionU32(address()); }
+        /** @return the value of the {@code SetCaptureOptionF32} field. */
+        @NativeType("void *")
+        public long SetCaptureOptionF32() { return RENDERDOC_API_1_6_0.nSetCaptureOptionF32(address()); }
+        /** @return the value of the {@code GetCaptureOptionU32} field. */
+        @NativeType("void *")
+        public long GetCaptureOptionU32() { return RENDERDOC_API_1_6_0.nGetCaptureOptionU32(address()); }
+        /** @return the value of the {@code GetCaptureOptionF32} field. */
+        @NativeType("void *")
+        public long GetCaptureOptionF32() { return RENDERDOC_API_1_6_0.nGetCaptureOptionF32(address()); }
+        /** @return the value of the {@code SetFocusToggleKeys} field. */
+        @NativeType("void *")
+        public long SetFocusToggleKeys() { return RENDERDOC_API_1_6_0.nSetFocusToggleKeys(address()); }
+        /** @return the value of the {@code SetCaptureKeys} field. */
+        @NativeType("void *")
+        public long SetCaptureKeys() { return RENDERDOC_API_1_6_0.nSetCaptureKeys(address()); }
+        /** @return the value of the {@code GetOverlayBits} field. */
+        @NativeType("void *")
+        public long GetOverlayBits() { return RENDERDOC_API_1_6_0.nGetOverlayBits(address()); }
+        /** @return the value of the {@code MaskOverlayBits} field. */
+        @NativeType("void *")
+        public long MaskOverlayBits() { return RENDERDOC_API_1_6_0.nMaskOverlayBits(address()); }
+        /** @return the value of the {@code RemoveHooks} field. */
+        @NativeType("void *")
+        public long RemoveHooks() { return RENDERDOC_API_1_6_0.nRemoveHooks(address()); }
+        /** @return the value of the {@code UnloadCrashHandler} field. */
+        @NativeType("void *")
+        public long UnloadCrashHandler() { return RENDERDOC_API_1_6_0.nUnloadCrashHandler(address()); }
+        /** @return the value of the {@code SetCaptureFilePathTemplate} field. */
+        @NativeType("void *")
+        public long SetCaptureFilePathTemplate() { return RENDERDOC_API_1_6_0.nSetCaptureFilePathTemplate(address()); }
+        /** @return the value of the {@code GetCaptureFilePathTemplate} field. */
+        @NativeType("void *")
+        public long GetCaptureFilePathTemplate() { return RENDERDOC_API_1_6_0.nGetCaptureFilePathTemplate(address()); }
+        /** @return the value of the {@code GetNumCaptures} field. */
+        @NativeType("void *")
+        public long GetNumCaptures() { return RENDERDOC_API_1_6_0.nGetNumCaptures(address()); }
+        /** @return the value of the {@code GetCapture} field. */
+        @NativeType("void *")
+        public long GetCapture() { return RENDERDOC_API_1_6_0.nGetCapture(address()); }
+        /** @return the value of the {@code TriggerCapture} field. */
+        @NativeType("void *")
+        public long TriggerCapture() { return RENDERDOC_API_1_6_0.nTriggerCapture(address()); }
+        /** @return the value of the {@code IsTargetControlConnected} field. */
+        @NativeType("void *")
+        public long IsTargetControlConnected() { return RENDERDOC_API_1_6_0.nIsTargetControlConnected(address()); }
+        /** @return the value of the {@code LaunchReplayUI} field. */
+        @NativeType("void *")
+        public long LaunchReplayUI() { return RENDERDOC_API_1_6_0.nLaunchReplayUI(address()); }
+        /** @return the value of the {@code SetActiveWindow} field. */
+        @NativeType("void *")
+        public long SetActiveWindow() { return RENDERDOC_API_1_6_0.nSetActiveWindow(address()); }
+        /** @return the value of the {@code StartFrameCapture} field. */
+        @NativeType("void *")
+        public long StartFrameCapture() { return RENDERDOC_API_1_6_0.nStartFrameCapture(address()); }
+        /** @return the value of the {@code IsFrameCapturing} field. */
+        @NativeType("void *")
+        public long IsFrameCapturing() { return RENDERDOC_API_1_6_0.nIsFrameCapturing(address()); }
+        /** @return the value of the {@code EndFrameCapture} field. */
+        @NativeType("void *")
+        public long EndFrameCapture() { return RENDERDOC_API_1_6_0.nEndFrameCapture(address()); }
+        /** @return the value of the {@code TriggerMultiFrameCapture} field. */
+        @NativeType("void *")
+        public long TriggerMultiFrameCapture() { return RENDERDOC_API_1_6_0.nTriggerMultiFrameCapture(address()); }
+        /** @return the value of the {@code SetCaptureFileComments} field. */
+        @NativeType("void *")
+        public long SetCaptureFileComments() { return RENDERDOC_API_1_6_0.nSetCaptureFileComments(address()); }
+        /** @return the value of the {@code DiscardFrameCapture} field. */
+        @NativeType("void *")
+        public long DiscardFrameCapture() { return RENDERDOC_API_1_6_0.nDiscardFrameCapture(address()); }
+        /** @return the value of the {@code ShowReplayUI} field. */
+        @NativeType("void *")
+        public long ShowReplayUI() { return RENDERDOC_API_1_6_0.nShowReplayUI(address()); }
+        /** @return the value of the {@code SetCaptureTitle} field. */
+        @NativeType("void *")
+        public long SetCaptureTitle() { return RENDERDOC_API_1_6_0.nSetCaptureTitle(address()); }
+
+        /** Sets the specified value to the {@code GetAPIVersion} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetAPIVersion(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetAPIVersion(address(), value); return this; }
+        /** Sets the specified value to the {@code SetCaptureOptionU32} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetCaptureOptionU32(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetCaptureOptionU32(address(), value); return this; }
+        /** Sets the specified value to the {@code SetCaptureOptionF32} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetCaptureOptionF32(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetCaptureOptionF32(address(), value); return this; }
+        /** Sets the specified value to the {@code GetCaptureOptionU32} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetCaptureOptionU32(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetCaptureOptionU32(address(), value); return this; }
+        /** Sets the specified value to the {@code GetCaptureOptionF32} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetCaptureOptionF32(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetCaptureOptionF32(address(), value); return this; }
+        /** Sets the specified value to the {@code SetFocusToggleKeys} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetFocusToggleKeys(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetFocusToggleKeys(address(), value); return this; }
+        /** Sets the specified value to the {@code SetCaptureKeys} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetCaptureKeys(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetCaptureKeys(address(), value); return this; }
+        /** Sets the specified value to the {@code GetOverlayBits} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetOverlayBits(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetOverlayBits(address(), value); return this; }
+        /** Sets the specified value to the {@code MaskOverlayBits} field. */
+        public RENDERDOC_API_1_6_0.Buffer MaskOverlayBits(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nMaskOverlayBits(address(), value); return this; }
+        /** Sets the specified value to the {@code RemoveHooks} field. */
+        public RENDERDOC_API_1_6_0.Buffer RemoveHooks(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nRemoveHooks(address(), value); return this; }
+        /** Sets the specified value to the {@code UnloadCrashHandler} field. */
+        public RENDERDOC_API_1_6_0.Buffer UnloadCrashHandler(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nUnloadCrashHandler(address(), value); return this; }
+        /** Sets the specified value to the {@code SetCaptureFilePathTemplate} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetCaptureFilePathTemplate(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetCaptureFilePathTemplate(address(), value); return this; }
+        /** Sets the specified value to the {@code GetCaptureFilePathTemplate} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetCaptureFilePathTemplate(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetCaptureFilePathTemplate(address(), value); return this; }
+        /** Sets the specified value to the {@code GetNumCaptures} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetNumCaptures(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetNumCaptures(address(), value); return this; }
+        /** Sets the specified value to the {@code GetCapture} field. */
+        public RENDERDOC_API_1_6_0.Buffer GetCapture(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nGetCapture(address(), value); return this; }
+        /** Sets the specified value to the {@code TriggerCapture} field. */
+        public RENDERDOC_API_1_6_0.Buffer TriggerCapture(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nTriggerCapture(address(), value); return this; }
+        /** Sets the specified value to the {@code IsTargetControlConnected} field. */
+        public RENDERDOC_API_1_6_0.Buffer IsTargetControlConnected(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nIsTargetControlConnected(address(), value); return this; }
+        /** Sets the specified value to the {@code LaunchReplayUI} field. */
+        public RENDERDOC_API_1_6_0.Buffer LaunchReplayUI(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nLaunchReplayUI(address(), value); return this; }
+        /** Sets the specified value to the {@code SetActiveWindow} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetActiveWindow(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetActiveWindow(address(), value); return this; }
+        /** Sets the specified value to the {@code StartFrameCapture} field. */
+        public RENDERDOC_API_1_6_0.Buffer StartFrameCapture(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nStartFrameCapture(address(), value); return this; }
+        /** Sets the specified value to the {@code IsFrameCapturing} field. */
+        public RENDERDOC_API_1_6_0.Buffer IsFrameCapturing(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nIsFrameCapturing(address(), value); return this; }
+        /** Sets the specified value to the {@code EndFrameCapture} field. */
+        public RENDERDOC_API_1_6_0.Buffer EndFrameCapture(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nEndFrameCapture(address(), value); return this; }
+        /** Sets the specified value to the {@code TriggerMultiFrameCapture} field. */
+        public RENDERDOC_API_1_6_0.Buffer TriggerMultiFrameCapture(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nTriggerMultiFrameCapture(address(), value); return this; }
+        /** Sets the specified value to the {@code SetCaptureFileComments} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetCaptureFileComments(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetCaptureFileComments(address(), value); return this; }
+        /** Sets the specified value to the {@code DiscardFrameCapture} field. */
+        public RENDERDOC_API_1_6_0.Buffer DiscardFrameCapture(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nDiscardFrameCapture(address(), value); return this; }
+        /** Sets the specified value to the {@code ShowReplayUI} field. */
+        public RENDERDOC_API_1_6_0.Buffer ShowReplayUI(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nShowReplayUI(address(), value); return this; }
+        /** Sets the specified value to the {@code SetCaptureTitle} field. */
+        public RENDERDOC_API_1_6_0.Buffer SetCaptureTitle(@NativeType("void *") long value) { RENDERDOC_API_1_6_0.nSetCaptureTitle(address(), value); return this; }
 
     }
 
