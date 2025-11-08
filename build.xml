@@ -516,6 +516,7 @@
             <compileBinding binding="opus"/>
             <compileBinding binding="par"/>
             <compileBinding binding="remotery"/>
+            <compileBinding binding="renderdoc"/>
             <compileBinding binding="rpmalloc"/>
             <compileBinding binding="shaderc"/>
             <compileBinding binding="spng"/>

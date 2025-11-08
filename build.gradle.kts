@@ -218,6 +218,11 @@ enum class Artifacts(
         "Generate parametric surfaces and other simple shapes.",
         *Platforms.ALL
     ),
+    RENDERDOC(
+        "lwjgl-renderdoc", "LWJGL - renderdoc bindings",
+        "A GPU debugger.",
+        Platforms.LINUX
+    ),
     REMOTERY(
         "lwjgl-remotery", "LWJGL - Remotery bindings",
         "A realtime CPU/GPU profiler hosted in a single C file with a viewer that runs in a web browser.",

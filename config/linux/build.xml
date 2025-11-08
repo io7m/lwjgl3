@@ -349,6 +349,9 @@
             </link>
         </build>
 
+        <!-- renderdoc -->
+        <build_simple module="renderdoc"/>
+
         <!-- rpmalloc -->
         <build_simple module="rpmalloc"/>
 

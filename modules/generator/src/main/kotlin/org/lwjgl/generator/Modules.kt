@@ -585,6 +585,15 @@ git branch -D @{-1}""")}"""}()}
         library = JNILibrary.create("LibRemotery"),
         arrayOverloads = false
     ),
+    RENDERDOC(
+        "renderdoc",
+        "org.lwjgl.renderdoc",
+        """
+        Contains bindings to the ${url("https://renderdoc.org", "renderdoc")} library.
+        """,
+        library = JNILibrary.create("LibRenderdoc"),
+        arrayOverloads = false
+    ),
     RPMALLOC(
         "rpmalloc",
         "org.lwjgl.system.rpmalloc",
