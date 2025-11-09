@@ -13,58 +13,12 @@ import org.lwjgl.*;
 
 import org.lwjgl.system.*;
 
-import static org.lwjgl.system.APIUtil.*;
 import static org.lwjgl.system.Checks.*;
 import static org.lwjgl.system.JNI.*;
 import static org.lwjgl.system.MemoryStack.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
-public class RD_Renderdoc {
-
-    private static final SharedLibrary RENDERDOC = Library.loadNative(RD_Renderdoc.class, "org.lwjgl.renderdoc", "renderdoc");
-
-    /** Contains the function pointers loaded from the renderdoc {@link SharedLibrary}. */
-    public static final class Functions {
-
-        private Functions() {}
-
-        /** Function address. */
-        public static final long
-            SetCaptureOptionU32        = apiGetFunctionAddress(RENDERDOC, "SetCaptureOptionU32"),
-            SetCaptureOptionF32        = apiGetFunctionAddress(RENDERDOC, "SetCaptureOptionF32"),
-            GetCaptureOptionU32        = apiGetFunctionAddress(RENDERDOC, "GetCaptureOptionU32"),
-            SetFocusToggleKeys         = apiGetFunctionAddress(RENDERDOC, "SetFocusToggleKeys"),
-            SetCaptureKeys             = apiGetFunctionAddress(RENDERDOC, "SetCaptureKeys"),
-            GetOverlayBits             = apiGetFunctionAddress(RENDERDOC, "GetOverlayBits"),
-            MaskOverlayBits            = apiGetFunctionAddress(RENDERDOC, "MaskOverlayBits"),
-            RemoveHooks                = apiGetFunctionAddress(RENDERDOC, "RemoveHooks"),
-            UnloadCrashHandler         = apiGetFunctionAddress(RENDERDOC, "UnloadCrashHandler"),
-            SetCaptureFilePathTemplate = apiGetFunctionAddress(RENDERDOC, "SetCaptureFilePathTemplate"),
-            GetCaptureFilePathTemplate = apiGetFunctionAddress(RENDERDOC, "GetCaptureFilePathTemplate"),
-            GetNumCaptures             = apiGetFunctionAddress(RENDERDOC, "GetNumCaptures"),
-            GetCapture                 = apiGetFunctionAddress(RENDERDOC, "GetCapture"),
-            SetCaptureFileComments     = apiGetFunctionAddress(RENDERDOC, "SetCaptureFileComments"),
-            IsTargetControlConnected   = apiGetFunctionAddress(RENDERDOC, "IsTargetControlConnected"),
-            LaunchReplayUI             = apiGetFunctionAddress(RENDERDOC, "LaunchReplayUI"),
-            GetCaptureOptionF32        = apiGetFunctionAddress(RENDERDOC, "GetCaptureOptionF32"),
-            GetAPI                     = apiGetFunctionAddress(RENDERDOC, "GetAPI"),
-            GetAPIVersion              = apiGetFunctionAddress(RENDERDOC, "GetAPIVersion"),
-            ShowReplayUI               = apiGetFunctionAddress(RENDERDOC, "ShowReplayUI"),
-            SetActiveWindow            = apiGetFunctionAddress(RENDERDOC, "SetActiveWindow"),
-            TriggerCapture             = apiGetFunctionAddress(RENDERDOC, "TriggerCapture"),
-            TriggerMultiFrameCapture   = apiGetFunctionAddress(RENDERDOC, "TriggerMultiFrameCapture"),
-            StartFrameCapture          = apiGetFunctionAddress(RENDERDOC, "StartFrameCapture"),
-            IsFrameCapturing           = apiGetFunctionAddress(RENDERDOC, "IsFrameCapturing"),
-            EndFrameCapture            = apiGetFunctionAddress(RENDERDOC, "EndFrameCapture"),
-            DiscardFrameCapture        = apiGetFunctionAddress(RENDERDOC, "DiscardFrameCapture"),
-            SetCaptureTitle            = apiGetFunctionAddress(RENDERDOC, "SetCaptureTitle");
-
-    }
-
-    /** Returns the renderdoc {@link SharedLibrary}. */
-    public static SharedLibrary getLibrary() {
-        return RENDERDOC;
-    }
+public class RenderDoc {
 
     public static final int
         eRENDERDOC_API_Version_1_0_0 = 0x2710,
@@ -165,7 +119,7 @@ public class RD_Renderdoc {
         eRENDERDOC_Key_Pause        = 0x11A,
         eRENDERDOC_Key_Max          = 0x11B;
 
-    protected RD_Renderdoc() {
+    protected RenderDoc() {
         throw new UnsupportedOperationException();
     }
 
@@ -173,7 +127,10 @@ public class RD_Renderdoc {
 
     /** {@code int SetCaptureOptionU32(unsigned int option, uint32_t value)} */
     public static int SetCaptureOptionU32(@NativeType("unsigned int") int option, @NativeType("uint32_t") int value) {
-        long __functionAddress = Functions.SetCaptureOptionU32;
+        long __functionAddress = RD.getCapabilities().SetCaptureOptionU32;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(option, value, __functionAddress);
     }
 
@@ -181,7 +138,10 @@ public class RD_Renderdoc {
 
     /** {@code int SetCaptureOptionF32(unsigned int option, float value)} */
     public static int SetCaptureOptionF32(@NativeType("unsigned int") int option, float value) {
-        long __functionAddress = Functions.SetCaptureOptionF32;
+        long __functionAddress = RD.getCapabilities().SetCaptureOptionF32;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(option, value, __functionAddress);
     }
 
@@ -190,7 +150,10 @@ public class RD_Renderdoc {
     /** {@code uint32_t GetCaptureOptionU32(unsigned int option)} */
     @NativeType("uint32_t")
     public static int GetCaptureOptionU32(@NativeType("unsigned int") int option) {
-        long __functionAddress = Functions.GetCaptureOptionU32;
+        long __functionAddress = RD.getCapabilities().GetCaptureOptionU32;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(option, __functionAddress);
     }
 
@@ -198,7 +161,10 @@ public class RD_Renderdoc {
 
     /** {@code void SetFocusToggleKeys(unsigned int * keys, int count)} */
     public static void nSetFocusToggleKeys(long keys, int count) {
-        long __functionAddress = Functions.SetFocusToggleKeys;
+        long __functionAddress = RD.getCapabilities().SetFocusToggleKeys;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokePV(keys, count, __functionAddress);
     }
 
@@ -211,7 +177,10 @@ public class RD_Renderdoc {
 
     /** {@code void SetCaptureKeys(unsigned int * keys, int count)} */
     public static void nSetCaptureKeys(long keys, int count) {
-        long __functionAddress = Functions.SetCaptureKeys;
+        long __functionAddress = RD.getCapabilities().SetCaptureKeys;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokePV(keys, count, __functionAddress);
     }
 
@@ -225,7 +194,10 @@ public class RD_Renderdoc {
     /** {@code uint32_t GetOverlayBits(void)} */
     @NativeType("uint32_t")
     public static int GetOverlayBits() {
-        long __functionAddress = Functions.GetOverlayBits;
+        long __functionAddress = RD.getCapabilities().GetOverlayBits;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(__functionAddress);
     }
 
@@ -233,7 +205,10 @@ public class RD_Renderdoc {
 
     /** {@code void MaskOverlayBits(uint32_t and, uint32_t or)} */
     public static void MaskOverlayBits(@NativeType("uint32_t") int and, @NativeType("uint32_t") int or) {
-        long __functionAddress = Functions.MaskOverlayBits;
+        long __functionAddress = RD.getCapabilities().MaskOverlayBits;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokeV(and, or, __functionAddress);
     }
 
@@ -241,7 +216,10 @@ public class RD_Renderdoc {
 
     /** {@code void RemoveHooks(void)} */
     public static void RemoveHooks() {
-        long __functionAddress = Functions.RemoveHooks;
+        long __functionAddress = RD.getCapabilities().RemoveHooks;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokeV(__functionAddress);
     }
 
@@ -249,7 +227,10 @@ public class RD_Renderdoc {
 
     /** {@code void UnloadCrashHandler(void)} */
     public static void UnloadCrashHandler() {
-        long __functionAddress = Functions.UnloadCrashHandler;
+        long __functionAddress = RD.getCapabilities().UnloadCrashHandler;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokeV(__functionAddress);
     }
 
@@ -257,7 +238,10 @@ public class RD_Renderdoc {
 
     /** {@code void SetCaptureFilePathTemplate(char const * filetemplate)} */
     public static void nSetCaptureFilePathTemplate(long filetemplate) {
-        long __functionAddress = Functions.SetCaptureFilePathTemplate;
+        long __functionAddress = RD.getCapabilities().SetCaptureFilePathTemplate;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokePV(filetemplate, __functionAddress);
     }
 
@@ -285,7 +269,10 @@ public class RD_Renderdoc {
 
     /** {@code char const * GetCaptureFilePathTemplate(void)} */
     public static long nGetCaptureFilePathTemplate() {
-        long __functionAddress = Functions.GetCaptureFilePathTemplate;
+        long __functionAddress = RD.getCapabilities().GetCaptureFilePathTemplate;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeP(__functionAddress);
     }
 
@@ -301,7 +288,10 @@ public class RD_Renderdoc {
     /** {@code uint32_t GetNumCaptures(void)} */
     @NativeType("uint32_t")
     public static int GetNumCaptures() {
-        long __functionAddress = Functions.GetNumCaptures;
+        long __functionAddress = RD.getCapabilities().GetNumCaptures;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(__functionAddress);
     }
 
@@ -309,7 +299,10 @@ public class RD_Renderdoc {
 
     /** {@code uint32_t GetCapture(uint32_t index, char * filename, uint32_t * pathlength, uint64_t * timestamp)} */
     public static int nGetCapture(int index, long filename, long pathlength, long timestamp) {
-        long __functionAddress = Functions.GetCapture;
+        long __functionAddress = RD.getCapabilities().GetCapture;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokePPPI(index, filename, pathlength, timestamp, __functionAddress);
     }
 
@@ -328,7 +321,10 @@ public class RD_Renderdoc {
 
     /** {@code void SetCaptureFileComments(char const * file, char const * comments)} */
     public static void nSetCaptureFileComments(long file, long comments) {
-        long __functionAddress = Functions.SetCaptureFileComments;
+        long __functionAddress = RD.getCapabilities().SetCaptureFileComments;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokePPV(file, comments, __functionAddress);
     }
 
@@ -360,7 +356,10 @@ public class RD_Renderdoc {
     /** {@code uint32_t IsTargetControlConnected(void)} */
     @NativeType("uint32_t")
     public static int IsTargetControlConnected() {
-        long __functionAddress = Functions.IsTargetControlConnected;
+        long __functionAddress = RD.getCapabilities().IsTargetControlConnected;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(__functionAddress);
     }
 
@@ -368,7 +367,10 @@ public class RD_Renderdoc {
 
     /** {@code uint32_t LaunchReplayUI(uint32_t connectTargetControl, char const * cmdline)} */
     public static int nLaunchReplayUI(int connectTargetControl, long cmdline) {
-        long __functionAddress = Functions.LaunchReplayUI;
+        long __functionAddress = RD.getCapabilities().LaunchReplayUI;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokePI(connectTargetControl, cmdline, __functionAddress);
     }
 
@@ -398,28 +400,37 @@ public class RD_Renderdoc {
 
     /** {@code float GetCaptureOptionF32(unsigned int option)} */
     public static float GetCaptureOptionF32(@NativeType("unsigned int") int option) {
-        long __functionAddress = Functions.GetCaptureOptionF32;
+        long __functionAddress = RD.getCapabilities().GetCaptureOptionF32;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeF(option, __functionAddress);
     }
 
     // --- [ GetAPI ] ---
 
-    /** {@code void GetAPI(RENDERDOC_Version version, void ** outPointers)} */
-    public static void nGetAPI(int version, long outPointers) {
-        long __functionAddress = Functions.GetAPI;
-        invokePV(version, outPointers, __functionAddress);
+    /** {@code int GetAPI(RENDERDOC_Version version, void ** outPointers)} */
+    public static int nGetAPI(int version, long outPointers) {
+        long __functionAddress = RD.getCapabilities().GetAPI;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
+        return invokePI(version, outPointers, __functionAddress);
     }
 
-    /** {@code void GetAPI(RENDERDOC_Version version, void ** outPointers)} */
-    public static void GetAPI(@NativeType("RENDERDOC_Version") int version, @NativeType("void **") PointerBuffer outPointers) {
-        nGetAPI(version, memAddress(outPointers));
+    /** {@code int GetAPI(RENDERDOC_Version version, void ** outPointers)} */
+    public static int GetAPI(@NativeType("RENDERDOC_Version") int version, @NativeType("void **") PointerBuffer outPointers) {
+        return nGetAPI(version, memAddress(outPointers));
     }
 
     // --- [ GetAPIVersion ] ---
 
     /** {@code void GetAPIVersion(int * major, int * minor, int * patch)} */
     public static void nGetAPIVersion(long major, long minor, long patch) {
-        long __functionAddress = Functions.GetAPIVersion;
+        long __functionAddress = RD.getCapabilities().GetAPIVersion;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokePPPV(major, minor, patch, __functionAddress);
     }
 
@@ -438,7 +449,10 @@ public class RD_Renderdoc {
     /** {@code uint32_t ShowReplayUI(void)} */
     @NativeType("uint32_t")
     public static int ShowReplayUI() {
-        long __functionAddress = Functions.ShowReplayUI;
+        long __functionAddress = RD.getCapabilities().ShowReplayUI;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(__functionAddress);
     }
 
@@ -446,8 +460,9 @@ public class RD_Renderdoc {
 
     /** {@code void SetActiveWindow(void * device, void * wndHandle)} */
     public static void SetActiveWindow(@NativeType("void *") long device, @NativeType("void *") long wndHandle) {
-        long __functionAddress = Functions.SetActiveWindow;
+        long __functionAddress = RD.getCapabilities().SetActiveWindow;
         if (CHECKS) {
+            check(__functionAddress);
             check(device);
             check(wndHandle);
         }
@@ -458,7 +473,10 @@ public class RD_Renderdoc {
 
     /** {@code void TriggerCapture(void)} */
     public static void TriggerCapture() {
-        long __functionAddress = Functions.TriggerCapture;
+        long __functionAddress = RD.getCapabilities().TriggerCapture;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokeV(__functionAddress);
     }
 
@@ -466,7 +484,10 @@ public class RD_Renderdoc {
 
     /** {@code void TriggerMultiFrameCapture(uint32_t numFrames)} */
     public static void TriggerMultiFrameCapture(@NativeType("uint32_t") int numFrames) {
-        long __functionAddress = Functions.TriggerMultiFrameCapture;
+        long __functionAddress = RD.getCapabilities().TriggerMultiFrameCapture;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokeV(numFrames, __functionAddress);
     }
 
@@ -474,8 +495,9 @@ public class RD_Renderdoc {
 
     /** {@code void StartFrameCapture(void * device, void * wndHandle)} */
     public static void StartFrameCapture(@NativeType("void *") long device, @NativeType("void *") long wndHandle) {
-        long __functionAddress = Functions.StartFrameCapture;
+        long __functionAddress = RD.getCapabilities().StartFrameCapture;
         if (CHECKS) {
+            check(__functionAddress);
             check(device);
             check(wndHandle);
         }
@@ -487,7 +509,10 @@ public class RD_Renderdoc {
     /** {@code uint32_t IsFrameCapturing(void)} */
     @NativeType("uint32_t")
     public static int IsFrameCapturing() {
-        long __functionAddress = Functions.IsFrameCapturing;
+        long __functionAddress = RD.getCapabilities().IsFrameCapturing;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         return invokeI(__functionAddress);
     }
 
@@ -496,8 +521,9 @@ public class RD_Renderdoc {
     /** {@code uint32_t EndFrameCapture(void * device, void * wndHandle)} */
     @NativeType("uint32_t")
     public static int EndFrameCapture(@NativeType("void *") long device, @NativeType("void *") long wndHandle) {
-        long __functionAddress = Functions.EndFrameCapture;
+        long __functionAddress = RD.getCapabilities().EndFrameCapture;
         if (CHECKS) {
+            check(__functionAddress);
             check(device);
             check(wndHandle);
         }
@@ -509,8 +535,9 @@ public class RD_Renderdoc {
     /** {@code uint32_t DiscardFrameCapture(void * device, void * wndHandle)} */
     @NativeType("uint32_t")
     public static int DiscardFrameCapture(@NativeType("void *") long device, @NativeType("void *") long wndHandle) {
-        long __functionAddress = Functions.DiscardFrameCapture;
+        long __functionAddress = RD.getCapabilities().DiscardFrameCapture;
         if (CHECKS) {
+            check(__functionAddress);
             check(device);
             check(wndHandle);
         }
@@ -521,7 +548,10 @@ public class RD_Renderdoc {
 
     /** {@code void SetCaptureTitle(char const * title)} */
     public static void nSetCaptureTitle(long title) {
-        long __functionAddress = Functions.SetCaptureTitle;
+        long __functionAddress = RD.getCapabilities().SetCaptureTitle;
+        if (CHECKS) {
+            check(__functionAddress);
+        }
         invokePV(title, __functionAddress);
     }
 
@@ -531,6 +561,21 @@ public class RD_Renderdoc {
             checkNT1(title);
         }
         nSetCaptureTitle(memAddress(title));
+    }
+
+    /**
+     * Initialize the RenderDoc library. Note that this method is expected to raise exceptions
+     * when the application is not running under RenderDoc. Therefore, callers are expected to
+     * catch and handle any raised exceptions.
+     *
+     * @throws RenderDocNotPresentException If the RenderDoc debugger is not running.
+     * @see "https://renderdoc.org/docs/in_application_api.html"
+     */
+
+    public static void create()
+      throws RenderDocNotPresentException
+    {
+        RD.create();
     }
 
 }

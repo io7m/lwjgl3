@@ -6,11 +6,10 @@
 package renderdoc.templates
 
 import org.lwjgl.generator.*
-import renderdoc.RENDERDOC_API_1_6_0
-import renderdoc.RENDERDOC_BINDING
-import renderdoc.RENDERDOC_Version
+import renderdoc.*
 
-val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, binding = RENDERDOC_BINDING) {
+val renderdoc = "RenderDoc".nativeClass(Module.RENDERDOC, binding = RENDERDOC_BINDING) {
+
     EnumConstant(
         "eRENDERDOC_API_Version_1_0_0".enum(10000),
         "eRENDERDOC_API_Version_1_0_1".enum(10001),
@@ -124,6 +123,23 @@ val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, binding = RENDERDOC
         "eRENDERDOC_Key_Max".enum(0x11B),
     )
 
+    customMethod("""
+    /**
+     * Initialize the RenderDoc library. Note that this method is expected to raise exceptions
+     * when the application is not running under RenderDoc. Therefore, callers are expected to
+     * catch and handle any raised exceptions.
+     *
+     * @throws RenderDocNotPresentException If the RenderDoc debugger is not running.
+     * @see "https://renderdoc.org/docs/in_application_api.html"
+     */
+
+    public static void create()
+      throws RenderDocNotPresentException
+    {
+        RD.create();
+    }
+    """)
+
     int(
         "SetCaptureOptionU32",
         unsigned_int("option"),
@@ -219,7 +235,7 @@ val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, binding = RENDERDOC
         unsigned_int("option")
     )
 
-    void(
+    int(
         "GetAPI",
         RENDERDOC_Version("version"),
         Unsafe..opaque_p.p("outPointers")
@@ -280,4 +296,6 @@ val renderdoc = "RD_Renderdoc".nativeClass(Module.RENDERDOC, binding = RENDERDOC
         "SetCaptureTitle",
         NullTerminated..char.const.p("title")
     )
+
+
 }

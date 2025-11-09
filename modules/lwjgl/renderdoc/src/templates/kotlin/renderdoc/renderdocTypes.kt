@@ -6,8 +6,54 @@
 package renderdoc
 
 import org.lwjgl.generator.*
+import java.io.*
 
-val RENDERDOC_BINDING = simpleBinding(Module.RENDERDOC)
+private const val CAPABILITIES_CLASS = "RDCapabilities"
+
+val RENDERDOC_BINDING = Generator.register(object : APIBinding(
+    Module.RENDERDOC,
+    CAPABILITIES_CLASS,
+    APICapabilities.JAVA_CAPABILITIES
+) {
+    init {
+        javaImport(
+            "static org.lwjgl.system.APIUtil.*",
+            "static org.lwjgl.system.Checks.*"
+        )
+    }
+
+    override fun generateFunctionAddress(writer: PrintWriter, function: Func) {
+        writer.println("$t${t}long $FUNCTION_ADDRESS = RD.getCapabilities().${function.name};")
+    }
+
+    override fun PrintWriter.generateJava() {
+        generateJavaPreamble()
+        println("public final class $CAPABILITIES_CLASS {\n")
+
+        /*
+         * The RenderDoc API is exposed as a single RENDERDOC_GetAPI function that returns
+         * a statically allocated struct of function pointers. We need to fetch the addresses
+         * of all of those functions (except GetAPI) from the returned struct.
+         */
+
+        val classes = super.getClasses("RD")
+        check(classes.size == 1)
+        val addresses = classes.getFunctionPointers().filter { func -> func.name != "GetAPI" }
+
+        println("${t}public final long GetAPI;")
+
+        println("${t}public final long")
+        println(addresses.joinToString(",\n$t$t", prefix = "$t$t", postfix = ";\n", transform = Func::name))
+
+        println("${t}public $CAPABILITIES_CLASS(long getAPI, RENDERDOC_API_1_6_0 api) {")
+        addresses.forEach { func ->
+            println("${t}${t}${func.name} = api.${func.name}();")
+        }
+        println("${t}${t}GetAPI = getAPI;")
+        println("${t}}")
+        println("\n}")
+    }
+})
 
 val RENDERDOC_Version = IntegerType("RENDERDOC_Version", PrimitiveMapping.INT)
 
